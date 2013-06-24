@@ -1,41 +1,31 @@
 do ->
   $ ->
-    # attach
-    $('body').append('<div class="readmelater-snapshot"></div> <div class="readmelater-info"></div>')
-
+    # attach that shit
+    $('body').append (template = $ '''
+      <div class="readmelater">
+        <div class="readmelater-snapshot"></div>
+        <div class="readmelater-info"></div>
+      </div>
+      '''; template)
     command_pressed = false
+
     # catch that shit
     $(window).keydown (e) ->
       if String.fromCharCode(e.keyCode).toLowerCase() == 's' and (e.ctrlKey or command_pressed)
         e.preventDefault()
-        if temp = localStorage.getItem('readmelater') or '{}'
-          console.log document.URL
-          console.log temp
-          temp = JSON.parse(temp)
-          # console.log 'inside'
-          # console.log localStorage.getItem 'readmelater'
-          # console.log document.URL
-          # console.log document.URL in localStorage.getItem 'readmelater'
-          # console.log JSON.parse localStorage.getItem 'readmelater'
-          # console.log document.URL in JSON.parse localStorage.getItem 'readmelater'
-          # a = JSON.parse localStorage.getItem 'readmelater'
-          # console.log a[document.URL]
-          if not (JSON.parse localStorage.getItem 'readmelater').hasOwnProperty(document.URL)
-            localStorage.setItem 'readmelater', (temp[document.URL] = document.title; JSON.stringify temp)
+        if dataStore = (JSON.parse localStorage.getItem('readmelater')) or {}
+          if not (dataStore).hasOwnProperty document.URL
+            localStorage.setItem 'readmelater', (dataStore[document.URL] = document.title; JSON.stringify dataStore)
             # add the active class, remove it in 100ms
-            $('.readmelater-snapshot').addClass('active')
-            setTimeout (-> $('.readmelater-snapshot').removeClass 'active'), 500
-          else
-            console.log 'yoo dude in here'
-            $('.readmelater-info').html('Already saved!')
-            $('.readmelater-info').addClass('active')
-            setTimeout (-> $('.readmelater-info').removeClass 'active'), 4000
-      else if e.keyCode == 91
-        command_pressed = true
+            template.find('.readmelater-snapshot').addClass 'active'
+            setTimeout (-> template.find('.readmelater-snapshot').removeClass 'active'), 500
+          else if (info = template.find('.readmelater-info'); not info.hasClass 'active')
+            info.html 'Already saved!'
+            info.addClass 'active'
+            setTimeout (-> info.removeClass 'active'), 3000
+      else if e.keyCode == 91 then command_pressed = true
 
     $(window).keyup (e) ->
-      if e.keyCode == 91
-        command_pressed = false
-    window.onblur = ->
-      command_pressed = false
+      if e.keyCode == 91 then command_pressed = false
+    window.onblur = -> command_pressed = false
 
