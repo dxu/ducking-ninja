@@ -3,5 +3,6 @@
 *.css
 *.js
 fonts/*
-public
+public/stylesheets
+public/javascripts
 
