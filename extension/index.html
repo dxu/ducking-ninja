@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet/less" type="text/css" href="test.less">
+    <script type="text/javascript">
+    less = {
+        env: "development", // or "production"
+        async: false,       // load imports async
+        fileAsync: false,   // load imports async when in a page under
+                            // a file protocol
+        poll: 1000,         // when in watch mode, time in ms between polls
+        functions: {},      // user functions, keyed by name
+        dumpLineNumbers: "comments", // or "mediaQuery" or "all"
+        relativeUrls: false,// whether to adjust url's to be relative
+                            // if false, url's are already relative to the
+                            // entry less file
+    };
+    </script>
+    <script src="less.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <ul id="chromeplex-nav">
+      <span id="chromeplex-nav-title">chrome+</span>
+      <li class="chromeplex-tab">
+        <img src="http://www.thegyminglos.co.uk/images/40px-Facebook_favicon.eps.png"/>
+        <span>Facebook</span>
+      </li>
+    </ul>
+    <object width="800" height="800" data="http://www.w3schools.com/tags/tag_object.asp"></object>
+  </body>
+</html>
