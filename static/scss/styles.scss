@@ -1,2 +1,121 @@
-body {
+@import "compass/css3";
+@import "compass/css3/box";
+@font-face {
+  font-family: table-text;
+  src: url('../assets/fonts/brandon.otf');
 }
+
+body {
+  font-family: table-text;
+  text-transform: uppercase;
+  width: 100%;
+  height: 100%;
+}
+
+$HEADER_HEIGHT: 45px;
+$HEADER_PADDING: 10px;
+header {
+  width: 100%;
+  box-sizing: border-box;
+  height: $HEADER_HEIGHT;
+  line-height: $HEADER_HEIGHT - 2 * $HEADER_PADDING;
+  text-align: center;
+  display: block;
+  background-color: rgba(235, 235, 235, 1.0);
+  padding: $HEADER_PADDING;
+
+  #logo {
+    position: absolute;
+    display: block;
+    width: $HEADER_HEIGHT - 2 * $HEADER_PADDING;
+    height: $HEADER_HEIGHT - 2 * $HEADER_PADDING;
+  }
+
+  #options {
+    float: right;
+    #random, #settings {
+      display: inline-block;
+      text-decoration: none;
+      color: blue;
+      font-size: 14px;
+    }
+    #settings {
+    }
+  }
+}
+
+#list {
+  font-size: 12px;
+  letter-spacing: 1px;
+  width: 100%;
+  li {
+    @include display-box;
+    &:nth-child(odd) {
+      background-color: rgba(255, 255, 255, 1.0)
+    }
+    &:nth-child(even) {
+      background-color: rgba(246, 246, 246, 1.0)
+    }
+  }
+  span {
+    padding: 15px 10px;
+    text-align: center;
+    text-overflow: ellipsis;
+    display: block;
+    @include box-flex(1)
+  }
+  a {
+    text-decoration: none;
+    color: rgba(3, 113, 165, 0.6);
+    &:hover {
+      color: rgba(3, 113, 165, 1.0);
+    }
+    &.item-remove {
+      color: rgba(3, 113, 165, 0.6);
+      &:hover {
+      }
+    }
+  }
+  .date-mark {
+    border-bottom: 1px dashed rgba(185, 190, 197, 1.0);
+    margin: 15px 0 0 0;
+    padding: 8px 20px;
+    font-size: 15px
+  }
+}
+
+
+
+
+$remove-height: 100px;
+table {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  tr.date-head {
+    td {
+      width: 100%;
+      empty-cells:hidden;
+    }
+  }
+  tr.item {
+    // border: 1px solid black;
+    // border-width: 1px 0 1px 0;
+    &:nth-child(odd) {
+      background-color: rgba(255, 255, 255, 1.0)
+    }
+    &:nth-child(even) {
+      background-color: rgba(246, 246, 246, 1.0)
+    }
+  }
+  td {
+    padding: 20px 10px;
+    &:last-child {
+      // border-left: 1px dotted rgba(180, 180, 180, 1.0);
+      width: $remove-height;
+    }
+  }
+}
+
