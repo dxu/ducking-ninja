@@ -13,11 +13,8 @@ do ->
     $(window).keydown (e) ->
       if String.fromCharCode(e.keyCode).toLowerCase() == 's' and (e.ctrlKey or command_pressed)
         e.preventDefault()
-
         metadata = {data: {}}
-
         saveItem (metadata.url = document.URL; metadata.data.title = document.title ; metadata)
-        console.log metadata
 
         # TODO: For localstorage
         # if dataStore = (JSON.parse localStorage.getItem('readmelater')) or {}
@@ -37,8 +34,13 @@ do ->
       if e.keyCode == 91 then command_pressed = false
     window.onblur = -> command_pressed = false
 
+###
+# saves it in the format:
+# url:
+# data:
+#   title:
+#   ...
+###
 saveItem = (metadata) ->
-  console.log 'here is the metadata'
-  console.log metadata
   chrome.runtime.sendMessage save: metadata, (res) -> console.log res
 
