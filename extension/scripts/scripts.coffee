@@ -1,3 +1,19 @@
+port = chrome.runtime.connect()
+
+window.addEventListener 'message', (event) ->
+  console.log 'got message eventi in content'
+  if event.source != window
+    return
+  # make sure it's from our website.
+  # if document.URL != DOMAIN_URL
+  # return
+  console.log chrome.runtime
+  chrome.runtime.sendMessage get: 'all', (res) ->
+    console.log res
+    console.log 'hello'
+    port.postMessage res
+    console.log 'here'
+
 do ->
   $ ->
     # attach that shit
