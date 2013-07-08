@@ -1,9 +1,10 @@
-port = chrome.runtime.connect()
-
 window.addEventListener 'message', (event) ->
-  console.log 'got message eventi in content'
-  if event.source != window
+  data = event.data
+  # check source, also check that it's from the website, not from the extension
+  if event.source != window or not data.website
     return
+  console.log 'got message eventi in content'
+  console.log event
   # make sure it's from our website.
   # if document.URL != DOMAIN_URL
   # return
@@ -11,7 +12,7 @@ window.addEventListener 'message', (event) ->
   chrome.runtime.sendMessage get: 'all', (res) ->
     console.log res
     console.log 'hello'
-    port.postMessage res
+    window.postMessage extension: res, '*'
     console.log 'here'
 
 do ->
