@@ -47,7 +47,8 @@ header {
 #list {
   font-size: 12px;
   letter-spacing: 1px;
-  width: 100%;
+  width: 80%;
+  margin: auto;
   li {
     @include display-box;
     &:nth-child(odd) {

@@ -3,17 +3,13 @@ window.addEventListener 'message', (event) ->
   # check source, also check that it's from the website, not from the extension
   if event.source != window or not data.website
     return
-  console.log 'got message eventi in content'
-  console.log event
   # make sure it's from our website.
   # if document.URL != DOMAIN_URL
   # return
-  console.log chrome.runtime
+
+  # send a request to the extension for the data held in storage
   chrome.runtime.sendMessage get: 'all', (res) ->
-    console.log res
-    console.log 'hello'
     window.postMessage extension: res, '*'
-    console.log 'here'
 
 do ->
   $ ->
@@ -54,8 +50,8 @@ do ->
 ###
 # saves it in the format:
 # url:
-# data:
 #   title:
+#   date:
 #   ...
 ###
 saveItem = (metadata) ->
