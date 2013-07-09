@@ -5,4 +5,5 @@
 fonts/*
 public/stylesheets
 public/javascripts
+node_modules
 
