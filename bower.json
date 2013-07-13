@@ -1,0 +1,17 @@
+{
+  "name": "readmelater",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*",
+    "underscore": "*",
+    "normalize-css": "*"
+  }
+}
